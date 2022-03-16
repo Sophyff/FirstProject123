@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val MESSAGE_GOTO_LOGIN = 1
-        const val MESSAGE_GOTO_DASHBOARD = 2
+        const val MESSAGE_GOTO_LOGIN = 100
+        const val MESSAGE_GOTO_DASHBOARD = 200
     }
 }
