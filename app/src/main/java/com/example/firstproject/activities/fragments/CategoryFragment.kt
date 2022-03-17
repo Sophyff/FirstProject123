@@ -16,6 +16,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.firstproject.R
+import com.example.firstproject.activities.ProductByCategoryActivity
 import com.example.firstproject.activities.fragments.adapter.CategoryAdapter
 import com.example.firstproject.data.Constants
 import com.example.firstproject.data.remote.Category
@@ -62,11 +63,13 @@ class CategoryFragment : Fragment() {
                 Log.d("tag", "the category list is $categories")
                 adapter = CategoryAdapter(categoryList)
                 rvCategory.adapter = adapter
-//                adapter.setOnCategorySelectedListener{
-//                        category, position ->
-//                    val categoryName=category.category_name
-//                    //todo send category info the list product screen
-//                }
+                adapter.setOnCategorySelectedListener{
+                        category, position ->
+                    val categoryId=category.category_id
+                    val intent=Intent(view?.getContext(), ProductByCategoryActivity::class.java)
+                    intent.putExtra("category_id",categoryId)
+                    startActivity(intent)
+                }
 
             },
             {

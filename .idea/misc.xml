@@ -8,12 +8,15 @@
         <entry key="app/src/main/res/layout/activity_draw_nav.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1099290780141844" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.10309017223910841" />
+        <entry key="app/src/main/res/layout/activity_product_by_category.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.1099290780141844" />
         <entry key="app/src/main/res/layout/fragment_category.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_item_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/layout_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/view_holder_category.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/view_holder_product.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/view_holder_sub_category.xml" value="0.1" />
         <entry key="app/src/main/res/menu/main_nav_menu.xml" value="0.1" />
       </map>
     </option>

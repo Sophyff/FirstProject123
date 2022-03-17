@@ -12,17 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FirstProject">
         <activity
-            android:theme="@style/Theme.FirstProject.NoActionbar"
-            android:name=".activities.DrawNavActivity"
+            android:name=".activities.ProductByCategoryActivity"
             android:exported="false" />
+        <activity
+            android:name=".activities.DrawNavActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FirstProject.NoActionbar" />
         <activity
             android:name=".activities.RegisterActivity"
-            android:label="@string/register"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/register" />
         <activity
             android:name=".activities.LoginActivity"
-            android:label="@string/Login"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/Login" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
