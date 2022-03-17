@@ -50,7 +50,6 @@ class CategoryFragment : Fragment() {
 
     private fun getCategory(){
         val url = "${Constants.BASE_URL}Category"
-        //val url="https://www.themealdb.com/api/json/v1/1/categories.php"
         val request = StringRequest(
             Request.Method.GET,
             url,

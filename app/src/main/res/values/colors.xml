@@ -13,5 +13,7 @@
     <color name="bright_red">#FF006E</color>
     <color name="orange">#FB5607</color>
     <color name="gold_yellow">#FFBE08</color>
-
+    <color name="light_blue">#ADE8FC</color>
+    <color name="lake_blue">#CAF0F8</color>
+    <color name="light_grey">#E9ECEF</color>
 </resources>

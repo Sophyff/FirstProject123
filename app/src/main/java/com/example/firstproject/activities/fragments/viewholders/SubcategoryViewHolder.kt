@@ -27,7 +27,7 @@ class SubcategoryViewHolder(val binding: ViewHolderSubCategoryBinding) : Recycle
     fun bind(subcategory: Subcategory) {
         val id=subcategory.subcategory_id
         val url = "${Constants.BASE_URL}SubCategory/products/$id"
-
+        Log.d("Tag","get products by subcategory_id url is: $url")
         val request = StringRequest(
             Request.Method.GET,
             url,
@@ -39,7 +39,7 @@ class SubcategoryViewHolder(val binding: ViewHolderSubCategoryBinding) : Recycle
                     binding.rvProducts.layoutManager = LinearLayoutManager(binding.root.context)
                     binding.rvProducts.adapter = adapter
                 } else {
-                    Log.i("tag", "request for products by sub-category was failed")
+                    Log.i("Tag", "request for products by sub-category was failed")
                 }
             },
             {

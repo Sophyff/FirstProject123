@@ -12,6 +12,7 @@ class ProductViewHolder(val binding: ViewHolderProductBinding) :RecyclerView.Vie
         binding.tvProductName.text=product.product_name
         binding.tvProductPrice.text= "\$ ${product.price}"
         binding.tvProductDesc.text=product.description
+        binding.rbRating.rating = product.average_rating.toFloat()
 
         val imgEndPoint=product.product_image_url
         val url="${Constants.BASE_URL_IMG}$imgEndPoint"

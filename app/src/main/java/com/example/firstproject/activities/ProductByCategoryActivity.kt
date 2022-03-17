@@ -29,16 +29,19 @@ class ProductByCategoryActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         queue= Volley.newRequestQueue(baseContext)
-        val categoryId=intent.extras?.getInt("category_id")
+        val categoryId=intent.extras?.getString("category_id")?.toInt()
+        Log.d("Tag","To get the subcategory, the category is $categoryId")
+
         if(categoryId!=0){
             loadSubCategories(categoryId)
-            Log.d("tag","To get the subcategory, the category is $categoryId")
+            Log.d("Tag","To get the subcategory, the category is $categoryId")
         }
     }
 
     private fun loadSubCategories(categoryId:Int?) {
 
         val url = "${Constants.BASE_URL}SubCategory?category_id=$categoryId"
+        Log.d("Tag","get subcategory by category id;  url is: $url")
         val request = StringRequest(
             Request.Method.GET,
             url,
