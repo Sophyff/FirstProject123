@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/ic_add.xml" value="0.1135" />
+        <entry key="app/src/main/res/drawable-v24/ic_minus.xml" value="0.1135" />
         <entry key="app/src/main/res/drawable/ic_menu.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_profile.xml" value="0.1075" />
         <entry key="app/src/main/res/layout/activity_draw_nav.xml" value="0.1" />
@@ -10,10 +12,12 @@
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.10309017223910841" />
         <entry key="app/src/main/res/layout/activity_product_by_category.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.1099290780141844" />
+        <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.13779128672745694" />
         <entry key="app/src/main/res/layout/fragment_category.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_item_list.xml" value="0.1" />
         <entry key="app/src/main/res/layout/layout_profile.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/view_holder_cart_product.xml" value="0.13779128672745694" />
         <entry key="app/src/main/res/layout/view_holder_category.xml" value="0.1" />
         <entry key="app/src/main/res/layout/view_holder_product.xml" value="0.1" />
         <entry key="app/src/main/res/layout/view_holder_sub_category.xml" value="0.1" />

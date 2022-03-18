@@ -1,5 +1,6 @@
 package com.example.firstproject.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
@@ -56,6 +57,15 @@ class DrawNavActivity : AppCompatActivity() {
             R.id.action_cart-> {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.container, CartFragment()).commit()
+            }
+            //todo  order and profile
+            R.id.action_logout ->{
+                val pref = getSharedPreferences("appsettings", MODE_PRIVATE)
+                val editor = pref.edit()
+                editor.clear()
+                editor.commit()
+                startActivity(Intent(baseContext, LoginActivity::class.java))
+                finish()
             }
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)
