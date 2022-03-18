@@ -24,6 +24,13 @@ class ProductAdapter(val list:List<Product>):RecyclerView.Adapter<ProductViewHol
                 productSelectedListener(product, position)
             }
         }
+
+        holder.binding.tvAddToCart.setOnClickListener {
+            if(this::addtToCartSelectedListener.isInitialized){
+                addtToCartSelectedListener(product,position)
+            }
+        }
+
     }
 
     override fun getItemCount(): Int {
@@ -34,5 +41,11 @@ class ProductAdapter(val list:List<Product>):RecyclerView.Adapter<ProductViewHol
 
     fun setOnProductSelectedListener(listner: (Product, Int) -> Unit) {
         productSelectedListener = listner
+    }
+
+    private lateinit var addtToCartSelectedListener: (Product, Int) -> Unit
+
+    fun setOnAddToCartSelectedListener(listner: (Product, Int) -> Unit) {
+        addtToCartSelectedListener = listner
     }
 }

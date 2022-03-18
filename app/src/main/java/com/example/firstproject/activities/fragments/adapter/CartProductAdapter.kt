@@ -6,11 +6,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.aapolis.apolisapp.data.Product
 import com.example.firstproject.activities.fragments.viewholders.CartProductViewHolder
 import com.example.firstproject.activities.fragments.viewholders.ProductViewHolder
+import com.example.firstproject.data.local.CartProduct
 import com.example.firstproject.data.remote.Category
 import com.example.firstproject.databinding.ViewHolderCartProductBinding
 import com.example.firstproject.databinding.ViewHolderProductBinding
 
-class CartProductAdapter(val list:List<Product>):RecyclerView.Adapter<CartProductViewHolder>() {
+class CartProductAdapter(val list:List<CartProduct>):RecyclerView.Adapter<CartProductViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartProductViewHolder {
         val layoutInflater=LayoutInflater.from(parent.context)
         val binding= ViewHolderCartProductBinding.inflate(layoutInflater, parent, false)
@@ -32,9 +33,9 @@ class CartProductAdapter(val list:List<Product>):RecyclerView.Adapter<CartProduc
         return list.size
     }
 
-    private lateinit var productSelectedListener: (Product, Int) -> Unit
+    private lateinit var productSelectedListener: (CartProduct, Int) -> Unit
 
-    fun setOnProductSelectedListener(listner: (Product, Int) -> Unit) {
+    fun setOnProductSelectedListener(listner: (CartProduct, Int) -> Unit) {
         productSelectedListener = listner
     }
 }
