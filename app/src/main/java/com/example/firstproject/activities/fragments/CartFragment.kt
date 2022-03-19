@@ -1,5 +1,6 @@
 package com.example.firstproject.activities.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -12,8 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aapolis.apolisapp.data.Product
 import com.example.firstproject.R
-import com.example.firstproject.activities.fragments.adapter.CartProductAdapter
-import com.example.firstproject.activities.fragments.adapter.CategoryAdapter
+import com.example.firstproject.activities.checkout.CheckoutActivity
+import com.example.firstproject.adapter.CartProductAdapter
+import com.example.firstproject.adapter.CategoryAdapter
 import com.example.firstproject.data.local.CartProduct
 import com.example.firstproject.data.local.CartProductDao
 import com.example.firstproject.data.remote.Category
@@ -25,7 +27,7 @@ class CartFragment : Fragment() {
     lateinit var productList:ArrayList<CartProduct>
     lateinit var adapter: CartProductAdapter
     lateinit var dao:CartProductDao
-    var totalAmount=0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -42,18 +44,25 @@ class CartFragment : Fragment() {
 
         dao= CartProductDao(binding.root.context)
         productList=dao.getCartProducts()
-        adapter=CartProductAdapter(productList)
+        adapter= CartProductAdapter(productList)
         binding.rvCartProducts.adapter=adapter
 
         changeQuantityListener(adapter)
 
+        binding.btnCheckOut.setOnClickListener {
+            startActivity(Intent(view.context,CheckoutActivity::class.java))
+        }
         return view
     }
 
-    private fun changeQuantityListener(adapter:CartProductAdapter){
+    private fun changeQuantityListener(adapter: CartProductAdapter){
         adapter.setOnAddQuantityClickListener { product, position ->
             product.quantity =product.quantity+1
             product.amount=product.amount + product.price
+            val result=dao.updateProduct(product)
+            if(result>0){
+                Log.d("tag", "update in the cart product table successfully")
+            }
             adapter.notifyItemChanged(position)
         }
 
@@ -67,13 +76,17 @@ class CartFragment : Fragment() {
                 productList.removeAt(position)
                 adapter.notifyDataSetChanged()
             }else {
+                product.quantity =product.quantity-1
+                product.amount=product.amount - product.price
+                val result=dao.updateProduct(product)
+                if(result>0){
+                    Log.d("tag", "update in the cart product table successfully")
+                }
                 adapter.notifyItemChanged(position)
             }
         }
 
-        binding.btnCheckOut.setOnClickListener {
-            //todo go out next activity
-        }
+
 
     }
 /****

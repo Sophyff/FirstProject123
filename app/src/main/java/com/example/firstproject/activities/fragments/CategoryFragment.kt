@@ -17,7 +17,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.firstproject.R
 import com.example.firstproject.activities.ProductByCategoryActivity
-import com.example.firstproject.activities.fragments.adapter.CategoryAdapter
+import com.example.firstproject.adapter.CategoryAdapter
 import com.example.firstproject.data.Constants
 import com.example.firstproject.data.remote.Category
 import com.example.firstproject.data.remote.CategoryResponse

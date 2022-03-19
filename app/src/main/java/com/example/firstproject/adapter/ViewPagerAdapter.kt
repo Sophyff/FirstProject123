@@ -1,9 +1,9 @@
-package com.example.firstproject.activities.fragments.adapter
+package com.example.firstproject.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.firstproject.activities.fragments.viewholders.SubcategoryViewHolder
+import com.example.firstproject.viewholders.SubcategoryViewHolder
 import com.example.firstproject.data.remote.Subcategory
 import com.example.firstproject.databinding.ViewHolderSubCategoryBinding
 

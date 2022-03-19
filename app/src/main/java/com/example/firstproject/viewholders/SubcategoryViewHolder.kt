@@ -1,4 +1,4 @@
-package com.example.firstproject.activities.fragments.viewholders
+package com.example.firstproject.viewholders
 
 import android.content.Intent
 import android.util.Log
@@ -12,7 +12,7 @@ import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.firstproject.activities.ProductDetailActivity
-import com.example.firstproject.activities.fragments.adapter.ProductAdapter
+import com.example.firstproject.adapter.ProductAdapter
 
 import com.example.firstproject.data.Constants
 import com.example.firstproject.data.local.CartProduct

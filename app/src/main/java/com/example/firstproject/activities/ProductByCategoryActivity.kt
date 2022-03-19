@@ -8,8 +8,7 @@ import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.firstproject.R
-import com.example.firstproject.activities.fragments.adapter.ViewPagerAdapter
+import com.example.firstproject.adapter.ViewPagerAdapter
 import com.example.firstproject.data.Constants
 import com.example.firstproject.data.remote.SubCategoryResponse
 import com.example.firstproject.data.remote.Subcategory
