@@ -1,17 +1,21 @@
 package com.example.firstproject.activities.fragments.viewholders
 
+import android.content.Intent
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.aapolis.apolisapp.data.ProductResponse
 import com.android.volley.Request
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.firstproject.activities.ProductDetailActivity
 import com.example.firstproject.activities.fragments.adapter.ProductAdapter
 
 import com.example.firstproject.data.Constants
+import com.example.firstproject.data.local.CartProduct
 import com.example.firstproject.data.local.CartProductDao
 import com.example.firstproject.data.remote.Category
 import com.example.firstproject.data.remote.Subcategory
@@ -42,18 +46,33 @@ class SubcategoryViewHolder(val binding: ViewHolderSubCategoryBinding) : Recycle
                     binding.rvProducts.adapter = adapter
                     adapter.setOnProductSelectedListener { product, i ->
                         //todo go to the product detail activity
+                        val myIntent= Intent(binding.root.context, ProductDetailActivity::class.java)
+                        myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        myIntent.putExtra("product_id",product.product_id)
+                        binding.root.context.startActivity(myIntent)
                     }
 
                     adapter.setOnAddToCartSelectedListener { product, i ->
                         //add to cart
                         val dao=CartProductDao(binding.root.context)
-                        val id=dao.addProduct(product,1)
-                        if(id>0) {
-                            Toast.makeText(binding.root.context, "successfully add product to cart", Toast.LENGTH_LONG).show()
+                        if(!dao.isProductInCart(product.product_id.toInt())){
+                            val item=CartProduct(product.product_id.toInt(),
+                                product.product_name,
+                                product.description,
+                                product.product_image_url,
+                                product.price.toFloat(),
+                                1,
+                                product.price.toFloat(),
+                            )
+                            val id=dao.addProduct(item)
+                            if(id>0) {
+                                Toast.makeText(binding.root.context, "successfully add product to cart", Toast.LENGTH_LONG).show()
+                            }
+                            else{
+                                Toast.makeText(binding.root.context, "Failed. Please try again", Toast.LENGTH_LONG).show()
+                            }
                         }
-                        else{
-                            Toast.makeText(binding.root.context, "Failed. Please try again", Toast.LENGTH_LONG).show()
-                        }
+
                     }
 
                 } else {

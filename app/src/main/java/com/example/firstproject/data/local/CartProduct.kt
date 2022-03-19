@@ -6,8 +6,8 @@ data class CartProduct(
     val desc:String,
     val img_url:String,
     val price:Float,
-    val quantity:Int,
-    val amount:Float
+    var quantity:Int,
+    var amount:Float
 )
 
 //CREATE TABLE cartProduct(

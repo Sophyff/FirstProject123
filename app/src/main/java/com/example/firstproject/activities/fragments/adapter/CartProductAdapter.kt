@@ -22,9 +22,15 @@ class CartProductAdapter(val list:List<CartProduct>):RecyclerView.Adapter<CartPr
         val product=list[position]
         holder.bind(product)
 
-        holder.itemView.setOnClickListener {
-            if(this::productSelectedListener.isInitialized) {
-                productSelectedListener(product, position)
+        holder.binding.ivAdd.setOnClickListener {
+            if (this::addQuantityClickListener.isInitialized) {
+                addQuantityClickListener(product, position)
+            }
+        }
+
+        holder.binding.ivMinus.setOnClickListener {
+            if (this::subQuantityClickListener.isInitialized) {
+                subQuantityClickListener(product, position)
             }
         }
     }
@@ -33,9 +39,13 @@ class CartProductAdapter(val list:List<CartProduct>):RecyclerView.Adapter<CartPr
         return list.size
     }
 
-    private lateinit var productSelectedListener: (CartProduct, Int) -> Unit
+    private lateinit var addQuantityClickListener: (CartProduct, Int) -> Unit
+    fun setOnAddQuantityClickListener(listener: (CartProduct, Int) -> Unit) {
+        addQuantityClickListener= listener
+    }
 
-    fun setOnProductSelectedListener(listner: (CartProduct, Int) -> Unit) {
-        productSelectedListener = listner
+    private lateinit var subQuantityClickListener: (CartProduct, Int) -> Unit
+    fun setOnSubQuantityClickListener(listener: (CartProduct, Int) -> Unit) {
+        subQuantityClickListener= listener
     }
 }

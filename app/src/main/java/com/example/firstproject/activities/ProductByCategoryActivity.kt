@@ -28,6 +28,9 @@ class ProductByCategoryActivity : AppCompatActivity() {
         binding= ActivityProductByCategoryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+//        setSupportActionBar(binding.toolbar)
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         queue= Volley.newRequestQueue(baseContext)
         val categoryId=intent.extras?.getString("category_id")?.toInt()
         Log.d("Tag","To get the subcategory, the category is $categoryId")

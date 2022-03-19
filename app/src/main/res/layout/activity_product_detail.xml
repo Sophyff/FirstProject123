@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/common_padding"
+    tools:context=".activities.ProductDetailActivity">
+
+
+    <TextView
+        android:id="@+id/tv_product_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:Text="Product Name"
+        android:textColor="@color/gold_yellow"
+        android:textSize="@dimen/header_size"
+        android:textStyle="bold"/>
+    <RatingBar
+        android:id="@+id/rb_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style = "?android:attr/ratingBarStyleIndicator"
+        android:numStars = "5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/tv_product_desc"/>
+
+    <TextView
+        android:id="@+id/tv_product_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_marginVertical="@dimen/small_margin"
+        app:layout_constraintStart_toEndOf="@id/iv_product_img"
+        app:layout_constraintTop_toBottomOf="@id/tv_product_name"
+        android:maxLines="4"/>
+
+
+    <ImageView
+        android:id="@+id/iv_product_img"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="5:3"
+        android:layout_marginVertical="@dimen/common_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_product_desc"
+
+        />
+    <TextView
+        android:id="@+id/tv_product_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/gold_yellow"
+        android:layout_marginTop="@dimen/small_margin"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintTop_toBottomOf="@+id/iv_product_img"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_add_to_cart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_marginTop="@dimen/small_margin"
+        app:layout_constraintTop_toBottomOf="@id/iv_product_img"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="visible"
+        android:text="Add To Cart"
+        android:textStyle="bold"
+        android:textColor="@color/sky_blue"/>
+
+    <View
+        android:id="@+id/label_line"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginVertical="@dimen/common_margin"
+        app:layout_constraintTop_toBottomOf="@id/tv_product_price"
+        android:background="@color/light_grey"/>
+
+    <TextView
+        android:id="@+id/lable_specification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/label_line"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Specifications"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_specification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/lable_specification"
+        app:layout_constraintStart_toStartOf="parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Model Name"
+            android:textColor="@color/dark_grey"
+            />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/label_user_review"
+        android:text="User Reviews"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_marginTop="@dimen/common_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/card_specification"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_reviews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/label_user_review"
+        app:layout_constraintStart_toStartOf="parent">
+        <TextView
+            android:id="@+id/card_tv_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="John Parker"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            />
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style = "?android:attr/ratingBarStyleSmall"
+            android:layout_marginTop="@dimen/common_margin"
+            android:numStars = "5"
+            android:rating="4"/>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

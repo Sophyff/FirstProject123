@@ -80,10 +80,10 @@ class LoginActivity : AppCompatActivity() {
 
     private fun saveUserInfo(user:String, mobile_no:String) {
 
-        val pref = getSharedPreferences("appsettings", MODE_PRIVATE)
+        val pref = getSharedPreferences("User", MODE_PRIVATE)
         val editor = pref.edit()
 
-        editor.putString("user", user)
+        editor.putString("name", user)
         editor.putString("mobile_no", mobile_no)
         editor.commit()
 

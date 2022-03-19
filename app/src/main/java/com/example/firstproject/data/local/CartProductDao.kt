@@ -17,23 +17,45 @@ import com.aapolis.apolisapp.data.Product
 class CartProductDao(context: Context) {
     private val db = DBHelper(context).writableDatabase
 
-    public fun addProduct(product: Product, qty:Int): Long {
+    public fun isProductInCart(id:Int):Boolean{
+        val sql="Select * from cartProduct where item_id=$id"
+        val cursor=db.rawQuery(sql,null,null)
+        if(cursor.moveToNext()){
+            return true
+        }
+        return false
+    }
+
+    public fun addProduct(product: CartProduct): Long {
         val values = ContentValues()
-        values.put("item_id", product.product_id)
-        values.put("name", product.product_name)
-        values.put("desc", product.description)
-        values.put("img_url", product.product_image_url)
+        values.put("item_id", product.item_id.toInt())
+        values.put("name", product.name)
+        values.put("desc", product.desc)
+        values.put("img_url", product.img_url)
         values.put("price", product.price)
-        values.put("quantity", qty)
-        values.put("amount", product.price.toFloat()*qty)
+        values.put("quantity", product.quantity)
+        values.put("amount", product.amount)
 
         return db.insert("cartProduct", null, values)
+    }
+
+    //UPDATE product SET price = price + 50 WHERE id = 1
+    public fun updateProduct(product:CartProduct):Int{
+        val values = ContentValues()
+        values.put("item_id", product.item_id.toInt())
+        values.put("name", product.name)
+        values.put("desc", product.desc)
+        values.put("img_url", product.img_url)
+        values.put("price", product.price)
+        values.put("quantity", product.quantity+1)
+        values.put("amount", product.amount+product.price)
+        return db.update("cartProduct",values,"item_id = ${product.item_id}",null)
     }
 
     @SuppressLint("Range")
     public fun getCartProducts(): ArrayList<CartProduct> {
         val products = ArrayList<CartProduct>()
-        val cursor = db.query("product", null, null, null, null, null, null)
+        val cursor = db.query("cartProduct", null, null, null, null, null, null)
         while(cursor.moveToNext()) {
             val id = cursor.getInt(cursor.getColumnIndex("item_id"))
             val name = cursor.getString(cursor.getColumnIndex("name"))
@@ -48,6 +70,11 @@ class CartProductDao(context: Context) {
             products.add(product)
         }
         return products
+    }
+
+    public fun deleteProduct(id:Int):Int{
+        val result=db.delete("cartProduct","WHERE item_id = $id",null)
+        return result
     }
 
 }

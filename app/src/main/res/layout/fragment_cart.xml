@@ -5,9 +5,22 @@
     android:layout_height="match_parent"
     tools:context=".activities.fragments.CartFragment">
 
+    <Button
+        android:id="@+id/btn_check_out"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:text="Check Out"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_margin="@dimen/small_margin"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCartProducts"
+        android:layout_marginTop="60dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+
 
 </FrameLayout>

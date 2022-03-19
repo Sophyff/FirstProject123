@@ -3,6 +3,7 @@ package com.example.firstproject.activities
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
@@ -31,12 +32,18 @@ class DrawNavActivity : AppCompatActivity() {
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
 
 
+
         headerView = binding.navView.getHeaderView(0)
 
         ivPhoto = headerView.findViewById(R.id.iv_photo)
         tvUsername = headerView.findViewById(R.id.tv_username)
 
-        tvUsername.text = "David"
+        val pref = getSharedPreferences("User", MODE_PRIVATE)
+        val userName=pref.getString("name","").toString()
+        Log.d("name","$userName")
+
+       // tvUsername.setText(userName)
+        tvUsername.text=userName
         ivPhoto.setImageDrawable(ContextCompat.getDrawable(baseContext, R.drawable.ic_profile))
 
         supportFragmentManager.beginTransaction()

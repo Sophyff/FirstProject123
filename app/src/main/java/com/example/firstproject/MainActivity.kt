@@ -1,5 +1,6 @@
 package com.example.firstproject
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,16 +14,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val pref = getSharedPreferences("appsettings", MODE_PRIVATE)
+        val pref = getSharedPreferences("User", MODE_PRIVATE)
 
-        if(pref.contains("user")) {
+        if(pref.contains("name")) {
             handler.sendEmptyMessageDelayed(MESSAGE_GOTO_DASHBOARD, 3000)
         } else {
             handler.sendEmptyMessageDelayed(MESSAGE_GOTO_LOGIN, 3000)
         }
     }
 
-    val handler = object: Handler() {
+    val handler = @SuppressLint("HandlerLeak")
+    object: Handler() {
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
             if(msg.what == MESSAGE_GOTO_DASHBOARD) {
