@@ -76,7 +76,9 @@ class ProductDetailActivity : AppCompatActivity() {
         binding.rbRating.rating=productDetail.average_rating.toFloat()
         binding.tvProductPrice.text= "\$ ${productDetail.product_name}"
 
-        //todo other product details
+        //todo other product details but without data
+
+        binding.tvModelName.text=productDetail.specifications[0].specification
         binding.tvAddToCart.setOnClickListener {
             val dao= CartProductDao(binding.root.context)
             val id=productDetail.product_id.toInt()

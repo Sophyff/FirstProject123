@@ -21,4 +21,14 @@
     <string name="totalAmount">Total Bill Amount</string>
     <string name="add_address">ADD ADDRESS</string>
     <string name="select_payment">Select Payment Option</string>
+    <string name="label_model_name">Model Name</string>
+    <string name="label_Color">Color</string>
+    <string name="label_ram">RAM</string>
+    <string name="label_internal_storage">Internal Storage</string>
+    <string name="label_processor">Processor</string>
+    <string name="label_primary_camera">Primary Cemara</string>
+    <string name="label_front_camera">Front Camera</string>
+    <string name="label_display">Display</string>
+    <string name="label_os">Operation System</string>
+    <string name="test">Here is hard code, just for demo</string>
 </resources>

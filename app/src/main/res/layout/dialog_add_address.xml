@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="@dimen/common_padding">
+
+    <TextView
+        android:id="@+id/label_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Add New Address"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/label_address_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintTop_toBottomOf="@+id/label_title"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Address Title"
+        android:textStyle="normal"/>
+
+    <EditText
+        android:id="@+id/et_address_title"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:paddingHorizontal="@dimen/common_padding"
+        app:layout_constraintTop_toBottomOf="@+id/label_address_title"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/rectangle_box"
+        android:hint="Home or Office"/>
+
+    <TextView
+        android:id="@+id/label_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/large_margin"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintTop_toBottomOf="@+id/et_address_title"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Address"
+        android:textStyle="normal"/>
+
+    <EditText
+        android:id="@+id/et_address_content"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:padding="@dimen/common_padding"
+        android:layout_marginTop="@dimen/small_margin"
+        app:layout_constraintTop_toBottomOf="@id/label_address"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/rectangle_box"
+        />
+
+    <Button
+        android:id="@+id/btn_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CANCEL"
+        android:layout_margin="@dimen/common_margin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_address_content"
+        />
+
+    <Button
+        android:id="@+id/btn_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SAVE"
+        android:layout_margin="@dimen/common_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_address_content"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,6 +12,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.firstproject.data.Constants
 import com.example.firstproject.data.remote.LoginResponse
+import com.example.firstproject.data.remote.User
 import com.example.firstproject.databinding.ActivityLoginBinding
 import com.google.gson.Gson
 import org.json.JSONObject
@@ -55,12 +56,12 @@ class LoginActivity : AppCompatActivity() {
             {
                 binding.pbProcessing.visibility = View.GONE
                 val status=it.getInt("status")
-                val userName=it.getJSONObject("user").getString("full_name")
-                val mobileNo=it.getJSONObject("user").getString("mobile_no")
+
                 val gson= Gson()
                 val response: LoginResponse =gson.fromJson(it.toString(), LoginResponse::class.java)
                 if(status==0){
-                    saveUserInfo(userName, mobileNo)
+                    val user=response.user
+                    saveUserInfo(user)
                 }else{
                     val message=it.getString("message")
                     Toast.makeText(baseContext,message, Toast.LENGTH_LONG).show()
@@ -78,13 +79,14 @@ class LoginActivity : AppCompatActivity() {
         binding.pbProcessing.visibility = View.VISIBLE
     }
 
-    private fun saveUserInfo(user:String, mobile_no:String) {
+    private fun saveUserInfo(user: User) {
 
         val pref = getSharedPreferences("User", MODE_PRIVATE)
         val editor = pref.edit()
 
-        editor.putString("name", user)
-        editor.putString("mobile_no", mobile_no)
+        editor.putString("name", user.full_name)
+        editor.putString("mobile_no", user.mobile_no)
+        editor.putString("user_id",user.user_id)
         editor.commit()
 
         startActivity(Intent(baseContext, DrawNavActivity::class.java))
