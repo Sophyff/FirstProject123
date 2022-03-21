@@ -15,6 +15,7 @@
         <entry key="app/src/main/res/layout/activity_product_by_category.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_product_detail.xml" value="0.13779128672745694" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.1099290780141844" />
+        <entry key="app/src/main/res/layout/activity_search.xml" value="0.2833333333333333" />
         <entry key="app/src/main/res/layout/dialog_add_address.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_cart.xml" value="0.13779128672745694" />
         <entry key="app/src/main/res/layout/fragment_cart_item.xml" value="0.1" />
@@ -31,7 +32,9 @@
         <entry key="app/src/main/res/layout/view_holder_checkout_item.xml" value="0.13779128672745694" />
         <entry key="app/src/main/res/layout/view_holder_product.xml" value="0.1" />
         <entry key="app/src/main/res/layout/view_holder_sub_category.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/view_holder_summary_item.xml" value="0.14375" />
         <entry key="app/src/main/res/menu/main_nav_menu.xml" value="0.1" />
+        <entry key="app/src/main/res/menu/search_menu.xml" value="0.2833333333333333" />
       </map>
     </option>
   </component>

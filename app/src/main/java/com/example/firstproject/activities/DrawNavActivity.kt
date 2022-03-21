@@ -4,12 +4,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
+import android.widget.SearchView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.core.view.MenuItemCompat
 import com.example.firstproject.R
 import com.example.firstproject.activities.fragments.CartFragment
 import com.example.firstproject.activities.fragments.CategoryFragment
@@ -30,7 +33,7 @@ class DrawNavActivity : AppCompatActivity() {
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
-
+     //   supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_search)
 
 
         headerView = binding.navView.getHeaderView(0)
@@ -88,4 +91,32 @@ class DrawNavActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.search_menu, menu)
+        val searchViewItem: MenuItem = menu.findItem(R.id.app_bar_search)
+        val searchView: SearchView = MenuItemCompat.getActionView(searchViewItem) as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                searchView.clearFocus()
+                val myIntent= Intent(baseContext, ProductDetailActivity::class.java)
+                myIntent.putExtra("keyword",query)
+                startActivity(myIntent)
+                /*   if(list.contains(query)){
+                    adapter.getFilter().filter(query);
+                }else{
+                    Toast.makeText(MainActivity.this, "No Match found",Toast.LENGTH_LONG).show();
+                }*/return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+               // adapter.getFilter().filter(newText)
+               return false
+            }
+        })
+        return super.onCreateOptionsMenu(menu)
+    }
+
+
 }

@@ -5,11 +5,12 @@ import android.os.Bundle
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.firstproject.adapter.CheckoutViewPagerAdapter
+import com.example.firstproject.data.remote.Addresse
 import com.example.firstproject.databinding.ActivityCheckoutBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
-class CheckoutActivity : AppCompatActivity() {
+class CheckoutActivity : AppCompatActivity(),Communitor {
     lateinit var binding: ActivityCheckoutBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,5 +31,12 @@ class CheckoutActivity : AppCompatActivity() {
                 tab.text="Summary"
             }
         }.attach()
+    }
+
+    override fun passAddress(address: Addresse) {
+        val bundle=Bundle()
+        bundle.putParcelable("address",address)
+        val summary=SummaryFragment()
+        summary.arguments=bundle
     }
 }

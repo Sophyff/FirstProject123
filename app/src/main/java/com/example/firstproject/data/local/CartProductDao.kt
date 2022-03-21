@@ -3,17 +3,7 @@ package com.example.firstproject.data.local
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
-import com.aapolis.apolisapp.data.Product
-//
-//CREATE TABLE cartProduct(
-//item_id INTEGER PRIMARY KEY,
-//name TEXT,
-//desc TEXT,
-//img_url TEXT,
-//price FLOAT,
-//quantity INTEGER,
-//amount FLOAT
-//)
+
 class CartProductDao(context: Context) {
     private val db = DBHelper(context).writableDatabase
 
@@ -47,8 +37,8 @@ class CartProductDao(context: Context) {
         values.put("desc", product.desc)
         values.put("img_url", product.img_url)
         values.put("price", product.price)
-        values.put("quantity", product.quantity+1)
-        values.put("amount", product.amount+product.price)
+        values.put("quantity", product.quantity)
+        values.put("amount", product.amount)
         return db.update("cartProduct",values,"item_id = ${product.item_id}",null)
     }
 
@@ -73,7 +63,7 @@ class CartProductDao(context: Context) {
     }
 
     public fun deleteProduct(id:Int):Int{
-        val result=db.delete("cartProduct","WHERE item_id = $id",null)
+        val result=db.delete("cartProduct","item_id = $id",null)
         return result
     }
 

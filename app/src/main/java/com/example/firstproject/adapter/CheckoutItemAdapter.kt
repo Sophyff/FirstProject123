@@ -3,14 +3,8 @@ package com.example.firstproject.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.aapolis.apolisapp.data.Product
-import com.example.firstproject.viewholders.CartProductViewHolder
-import com.example.firstproject.viewholders.ProductViewHolder
 import com.example.firstproject.data.local.CartProduct
-import com.example.firstproject.data.remote.Category
-import com.example.firstproject.databinding.ViewHolderCartProductBinding
 import com.example.firstproject.databinding.ViewHolderCheckoutItemBinding
-import com.example.firstproject.databinding.ViewHolderProductBinding
 import com.example.firstproject.viewholders.CheckoutItemViewHolder
 
 class CheckoutItemAdapter(val list:List<CartProduct>):RecyclerView.Adapter<CheckoutItemViewHolder>() {

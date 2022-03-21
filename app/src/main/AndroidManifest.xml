@@ -12,11 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FirstProject">
         <activity
-            android:name=".activities.checkout.CheckoutActivity"
+            android:name=".activities.SearchActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.checkout.CheckoutActivity"
+            android:exported="false"
+            android:label="Check Out" />
+        <activity
             android:name=".activities.ProductDetailActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="Product Detail" />
         <activity
             android:name=".activities.ProductByCategoryActivity"
             android:exported="false" />

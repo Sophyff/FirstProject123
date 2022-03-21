@@ -31,4 +31,9 @@
     <string name="label_display">Display</string>
     <string name="label_os">Operation System</string>
     <string name="test">Here is hard code, just for demo</string>
+    <string name="cash">Cash On Delivery</string>
+    <string name="label_internet">Internet Backing</string>
+    <string name="label_debit">Debit Card/Credit Card</string>
+    <string name="label_paypal">Pay Pal</string>
+    <string name="cart_items">Cart Items</string>
 </resources>

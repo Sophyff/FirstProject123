@@ -11,7 +11,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.aapolis.apolisapp.data.Product
+
 import com.example.firstproject.R
 import com.example.firstproject.activities.checkout.CheckoutActivity
 import com.example.firstproject.adapter.CartProductAdapter
@@ -72,7 +72,9 @@ class CartFragment : Fragment() {
                 val response=dao.deleteProduct(product.item_id)
                 if(response>0){
                     Log.d("tag", "item in cart delete successfully")
-                }
+                }else(
+                        Log.d("tag", "item in cart delete failed")
+                )
                 productList.removeAt(position)
                 adapter.notifyDataSetChanged()
             }else {
@@ -89,15 +91,5 @@ class CartFragment : Fragment() {
 
 
     }
-/****
-    fun calculateTotal() {
-        var sum = 0f
-        productList.forEach{
-            sum = sum + it.price * it.quantity
-        }
-        totalAmount=sum
-        binding.tvTotalBillAmount.text = "Total bill amount = $totalBillAmount"
-    }
-****/
 
 }

@@ -1,4 +1,4 @@
-package com.aapolis.apolisapp.data
+package com.example.firstproject.data.remote
 
 data class ProductResponse(
     val message: String,

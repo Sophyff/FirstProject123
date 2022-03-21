@@ -3,9 +3,8 @@ package com.example.firstproject.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.aapolis.apolisapp.data.Product
+import com.example.firstproject.data.remote.Product
 import com.example.firstproject.viewholders.ProductViewHolder
-import com.example.firstproject.data.remote.Category
 import com.example.firstproject.databinding.ViewHolderProductBinding
 
 class ProductAdapter(val list:List<Product>):RecyclerView.Adapter<ProductViewHolder>() {
