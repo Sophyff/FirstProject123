@@ -79,7 +79,8 @@ class DeliveryFragment : Fragment() {
             val address = dialogBinding.etAddressContent.text.toString()
             Log.d("tag","address title is $title, address is $address")
             communitor.passAddress(Addresse("0",title,address))
-
+            binding.tvTitle.text=title
+            binding.tvAddress.text=address
 
             dialog.dismiss()
             //todo api call to add address

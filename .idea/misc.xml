@@ -23,13 +23,15 @@
         <entry key="app/src/main/res/layout/fragment_delivery.xml" value="0.13779128672745694" />
         <entry key="app/src/main/res/layout/fragment_item.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_item_list.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_orders.xml" value="0.1005586592178771" />
         <entry key="app/src/main/res/layout/fragment_payment.xml" value="0.13779128672745694" />
-        <entry key="app/src/main/res/layout/fragment_summary.xml" value="0.13779128672745694" />
+        <entry key="app/src/main/res/layout/fragment_summary.xml" value="0.12080536912751678" />
         <entry key="app/src/main/res/layout/layout_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/view_holder_address.xml" value="0.13779128672745694" />
         <entry key="app/src/main/res/layout/view_holder_cart_product.xml" value="0.13779128672745694" />
         <entry key="app/src/main/res/layout/view_holder_category.xml" value="0.1" />
         <entry key="app/src/main/res/layout/view_holder_checkout_item.xml" value="0.13779128672745694" />
+        <entry key="app/src/main/res/layout/view_holder_order.xml" value="0.1" />
         <entry key="app/src/main/res/layout/view_holder_product.xml" value="0.1" />
         <entry key="app/src/main/res/layout/view_holder_sub_category.xml" value="0.1" />
         <entry key="app/src/main/res/layout/view_holder_summary_item.xml" value="0.14375" />
