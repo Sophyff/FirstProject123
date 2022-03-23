@@ -16,12 +16,15 @@ import androidx.core.view.MenuItemCompat
 import com.example.firstproject.R
 import com.example.firstproject.activities.fragments.CartFragment
 import com.example.firstproject.activities.fragments.CategoryFragment
+import com.example.firstproject.activities.fragments.OrdersFragment
+import com.example.firstproject.activities.fragments.ProfileFragment
 import com.example.firstproject.databinding.ActivityDrawNavBinding
 
 class DrawNavActivity : AppCompatActivity() {
     lateinit var headerView: View
     lateinit var ivPhoto: ImageView
     lateinit var tvUsername: TextView
+    lateinit var tvMobile:TextView
 
     lateinit var binding: ActivityDrawNavBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,13 +43,16 @@ class DrawNavActivity : AppCompatActivity() {
 
         ivPhoto = headerView.findViewById(R.id.iv_photo)
         tvUsername = headerView.findViewById(R.id.tv_username)
+        tvMobile = headerView.findViewById(R.id.tv_mobile)
 
         val pref = getSharedPreferences("User", MODE_PRIVATE)
         val userName=pref.getString("name","").toString()
+        val mobile=pref.getString("mobile_no","").toString()
         Log.d("name","$userName")
 
        // tvUsername.setText(userName)
         tvUsername.text=userName
+        tvMobile.text=mobile
         ivPhoto.setImageDrawable(ContextCompat.getDrawable(baseContext, R.drawable.ic_profile))
 
         supportFragmentManager.beginTransaction()
@@ -68,7 +74,15 @@ class DrawNavActivity : AppCompatActivity() {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.container, CartFragment()).commit()
             }
-            //todo  order and profile
+
+            R.id.action_order-> {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, OrdersFragment()).commit()
+            }
+            R.id.action_profile-> {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.container, ProfileFragment()).commit()
+            }
             R.id.action_logout ->{
                 val pref = getSharedPreferences("appsettings", MODE_PRIVATE)
                 val editor = pref.edit()

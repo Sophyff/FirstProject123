@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.DefaultRetryPolicy
 import com.android.volley.Request
@@ -23,6 +24,7 @@ import com.example.firstproject.activities.ProductByCategoryActivity
 import com.example.firstproject.adapter.AddressAdapter
 import com.example.firstproject.adapter.CategoryAdapter
 import com.example.firstproject.data.Constants
+import com.example.firstproject.data.local.DeliveryAddress
 import com.example.firstproject.data.remote.*
 import com.example.firstproject.databinding.DialogAddAddressBinding
 import com.example.firstproject.databinding.FragmentCartItemBinding
@@ -34,10 +36,11 @@ import java.net.URLEncoder
 class DeliveryFragment : Fragment() {
     lateinit var binding: FragmentDeliveryBinding
     var userId=""
+    lateinit var viewModel: CheckoutViewModel
     lateinit var queue:RequestQueue
     lateinit var addressList:List<Addresse>
     lateinit var adapter : AddressAdapter
-    lateinit var communitor: Communitor
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,8 +52,8 @@ class DeliveryFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding= FragmentDeliveryBinding.inflate(layoutInflater)
-        communitor=activity as Communitor
+        binding= FragmentDeliveryBinding.inflate(inflater,container,false)
+        viewModel=ViewModelProvider(requireActivity()).get(CheckoutViewModel::class.java)
 
         val pref = this.getActivity()?.getSharedPreferences("User", AppCompatActivity.MODE_PRIVATE)
          userId=pref?.getString("user_id","")!!
@@ -78,49 +81,60 @@ class DeliveryFragment : Fragment() {
             val title = dialogBinding.etAddressTitle.text.toString()
             val address = dialogBinding.etAddressContent.text.toString()
             Log.d("tag","address title is $title, address is $address")
-            communitor.passAddress(Addresse("0",title,address))
+            val addr=DeliveryAddress(title,address)
+            viewModel.addr.postValue(addr)     //save address to view model
+
             binding.tvTitle.text=title
             binding.tvAddress.text=address
 
+        //    addAddressApi(title,address)
+
             dialog.dismiss()
-            //todo api call to add address
-                val url = "${Constants.BASE_URL}User/address"
 
-                val requestData: JSONObject = JSONObject()
-                requestData.put("user_id",userId)
-                requestData.put("email_id",title)
-                requestData.put("password",address)
-
-                val request= JsonObjectRequest(
-                    Request.Method.POST,
-                    url,
-                    requestData,
-                    {
-                        val status=it.getInt("status")
-                        val message=it.getString("message")
-                        if(status==0){
-                            Toast.makeText(binding.root.context,message, Toast.LENGTH_LONG).show()
-                            Log.d("address","sucess message $message")
-                            getAddressList()
-                            adapter.notifyDataSetChanged()
-
-                        }else{
-                            Toast.makeText(binding.root.context,message, Toast.LENGTH_LONG).show()
-                        }
-
-                    },{
-                            error: VolleyError ->
-                        error.printStackTrace()
-                        Toast.makeText(binding.root.context,"$error", Toast.LENGTH_LONG).show()
-                    }
-                )
-                queue.add(request)
         }
+
 
         dialogBinding.btnCancel.setOnClickListener {
             dialog.dismiss()
         }
 
+    }
+
+    private fun addAddressApi(title:String, address:String){
+        /***
+        //todo api call to add address
+        val url = "${Constants.BASE_URL}User/address"
+
+        val requestData: JSONObject = JSONObject()
+        requestData.put("user_id",userId)
+        requestData.put("email_id",title)
+        requestData.put("password",address)
+
+        val request= JsonObjectRequest(
+        Request.Method.POST,
+        url,
+        requestData,
+        {
+        val status=it.getInt("status")
+        val message=it.getString("message")
+        if(status==0){
+        Toast.makeText(binding.root.context,message, Toast.LENGTH_LONG).show()
+        Log.d("address","sucess message $message")
+        getAddressList()
+        adapter.notifyDataSetChanged()
+
+        }else{
+        Toast.makeText(binding.root.context,message, Toast.LENGTH_LONG).show()
+        }
+
+        },{
+        error: VolleyError ->
+        error.printStackTrace()
+        Toast.makeText(binding.root.context,"$error", Toast.LENGTH_LONG).show()
+        }
+        )
+        queue.add(request)
+         ***/
     }
 
     private fun getAddressList(){

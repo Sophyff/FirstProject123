@@ -1,5 +1,6 @@
 package com.example.firstproject.activities.checkout
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,16 +8,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.example.firstproject.activities.OrderDetailActivity
 import com.example.firstproject.adapter.CheckoutItemAdapter
 import com.example.firstproject.data.Constants
 import com.example.firstproject.data.local.*
 import com.example.firstproject.data.remote.Addresse
+import com.example.firstproject.data.remote.OrderDetail
 import com.example.firstproject.databinding.FragmentSummaryBinding
 import com.google.gson.Gson
 import org.json.JSONObject
@@ -27,6 +31,7 @@ class SummaryFragment : Fragment() {
     lateinit var productList:ArrayList<CartProduct>
     lateinit var adapter: CheckoutItemAdapter
     lateinit var queue:RequestQueue
+    lateinit var viewModel:CheckoutViewModel
     var sum = 0f
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +45,12 @@ class SummaryFragment : Fragment() {
         binding= FragmentSummaryBinding.inflate(layoutInflater)
         binding.rvCheckoutItems.layoutManager = LinearLayoutManager(binding.root.getContext())
         queue= Volley.newRequestQueue(binding.root.context)
+        viewModel= ViewModelProvider(requireActivity()).get(CheckoutViewModel::class.java)
+
+        viewModel.addr.observe(viewLifecycleOwner){
+            binding.tvAddressTitle.text=it.title
+            binding.tvAddress.text=it.address    //set the address value
+        }
 
         val address= arguments?.getParcelable<Addresse>("address")
         Log.d("summary","title: ${address?.title}  address: ${address?.address}")
@@ -49,8 +60,7 @@ class SummaryFragment : Fragment() {
 //            binding.tvAddress.text=address.address
 //        }
 
-        binding.tvAddressTitle.text="Home"
-        binding.tvAddress.text="1280 walnut street, Allen, Tx"
+
 
         dao= CartProductDao(binding.root.context)
         productList=dao.getCartProducts()
@@ -63,6 +73,7 @@ class SummaryFragment : Fragment() {
         }
         return binding.root
     }
+
      private fun calculateTotalAmount() {
 
         productList.forEach{
@@ -74,8 +85,8 @@ class SummaryFragment : Fragment() {
     private fun placeOrder(){
         val url = "${Constants.BASE_URL}Order"
 
-        var requestData: JSONObject = JSONObject()
-        requestData=convertData()
+       // var requestData: JSONObject = JSONObject()
+        val requestData=convertData()
         Log.d("summary", "the request data is ${requestData.toString()}")
         val request= JsonObjectRequest(
             Request.Method.POST,
@@ -83,8 +94,14 @@ class SummaryFragment : Fragment() {
             requestData,
             {
                 val status=it.getInt("status")
+
                 if(status==0){
-                   Log.d("summary","order place sucessfully, order id is ${it.getInt("order_id")}")
+                    val orderId=it.getInt("order_id")
+                   Log.d("summary","order place sucessfully, order id is $orderId")
+                    val intent= Intent(binding.root.context, OrderDetailActivity::class.java)
+                    intent.putExtra("order_id",orderId)
+                    startActivity(intent)
+
                 }else{
                     val message=it.getString("message")
                     Log.d("summary","error message $message")
@@ -114,9 +131,10 @@ class SummaryFragment : Fragment() {
         val gson=Gson()
         val itemObject=gson.toJson(bill,Bill::class.java)
         Log.d("summary","itemObject is ${itemObject}")
+
         val requestData: JSONObject = JSONObject(itemObject)
 
 
-        return requestData.getJSONObject("result")
+        return requestData
     }
 }
