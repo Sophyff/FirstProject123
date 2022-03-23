@@ -57,6 +57,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Delivery Address"
+            android:layout_marginTop="@dimen/small_margin"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintTop_toBottomOf="@id/label_total_amount"
             app:layout_constraintStart_toStartOf="parent"
             />
@@ -65,6 +67,8 @@
             android:id="@+id/tv_address_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintTop_toBottomOf="@+id/label_address"
             app:layout_constraintStart_toStartOf="parent"/>
 
@@ -72,13 +76,18 @@
             android:id="@+id/tv_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/tv_address_title"
-            app:layout_constraintStart_toStartOf="parent"/>
+            android:textStyle="bold"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:layout_marginStart="@dimen/small_margin"
+            app:layout_constraintTop_toBottomOf="@+id/label_address"
+            app:layout_constraintStart_toEndOf="@+id/tv_address_title"/>
 
         <TextView
             android:id="@+id/tv_label_payment_option"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             app:layout_constraintTop_toBottomOf="@id/tv_address"
             app:layout_constraintStart_toStartOf="parent"
             android:text="Payment Option"/>
@@ -87,6 +96,7 @@
             android:id="@+id/tv_payment_option"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintTop_toBottomOf="@id/tv_address"
             app:layout_constraintEnd_toEndOf="parent"
             android:textStyle="bold"

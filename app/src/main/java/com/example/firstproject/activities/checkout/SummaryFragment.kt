@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
@@ -33,6 +34,8 @@ class SummaryFragment : Fragment() {
     lateinit var queue:RequestQueue
     lateinit var viewModel:CheckoutViewModel
     var sum = 0f
+    var paymentOption=""
+    lateinit var address: DeliveryAddress
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -50,10 +53,12 @@ class SummaryFragment : Fragment() {
         viewModel.addr.observe(viewLifecycleOwner){
             binding.tvAddressTitle.text=it.title
             binding.tvAddress.text=it.address    //set the address value
+            address= DeliveryAddress(it.title, it.address)
         }
 
        viewModel.paymentOption.observe(viewLifecycleOwner){
            binding.tvPaymentOption.text=it
+           paymentOption=it
        }
 
         dao= CartProductDao(binding.root.context)
@@ -112,15 +117,17 @@ class SummaryFragment : Fragment() {
     }
 
     private fun convertData():JSONObject{
+        val pref = this.getActivity()?.getSharedPreferences("User", AppCompatActivity.MODE_PRIVATE)
+        val userId=pref?.getString("user_id","")?.toInt()!!
 
         var list=mutableListOf<Item>()
         for(item in productList){
             list.add(Item(item.item_id.toInt(),item.quantity,item.price))
         }
 
-        val address= DeliveryAddress("Home","1280 walnut street")
+      //  val address= DeliveryAddress("Home","1280 walnut street")
 
-        var bill=Bill(sum,address,list,"COD",120)
+        var bill=Bill(sum,address,list,paymentOption,userId)
 
         val gson=Gson()
         val itemObject=gson.toJson(bill,Bill::class.java)
