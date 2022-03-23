@@ -52,15 +52,9 @@ class SummaryFragment : Fragment() {
             binding.tvAddress.text=it.address    //set the address value
         }
 
-        val address= arguments?.getParcelable<Addresse>("address")
-        Log.d("summary","title: ${address?.title}  address: ${address?.address}")
-
-//        if(address!=null){
-//            binding.tvAddressTitle.text=address.title
-//            binding.tvAddress.text=address.address
-//        }
-
-
+       viewModel.paymentOption.observe(viewLifecycleOwner){
+           binding.tvPaymentOption.text=it
+       }
 
         dao= CartProductDao(binding.root.context)
         productList=dao.getCartProducts()

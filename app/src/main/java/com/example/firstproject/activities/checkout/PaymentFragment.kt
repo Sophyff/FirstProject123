@@ -5,12 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import com.example.firstproject.R
 import com.example.firstproject.databinding.FragmentPaymentBinding
 
 
 class PaymentFragment : Fragment() {
     lateinit var binding:FragmentPaymentBinding
+    lateinit var viewModel: CheckoutViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +25,8 @@ class PaymentFragment : Fragment() {
     ): View? {
 
         binding= FragmentPaymentBinding.inflate(layoutInflater)
+
+        viewModel= ViewModelProvider(requireActivity()).get(CheckoutViewModel::class.java)
         selectPayment()
         return binding.root
     }
@@ -36,8 +40,7 @@ class PaymentFragment : Fragment() {
                 R.id.rb_debit-> selectedPlan = "debit / credit"
                 R.id.rb_paypal -> selectedPlan = "Pay Pal"
             }
-
-            //todo send the selected plan to summary fragment
+            viewModel.paymentOption.postValue(selectedPlan)
         }
 
     }
