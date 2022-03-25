@@ -67,5 +67,9 @@ class CartProductDao(context: Context) {
         return result
     }
 
+    public fun deleteAll(){
+        db.delete("cartProduct", null, null)
+    }
+
 }
 

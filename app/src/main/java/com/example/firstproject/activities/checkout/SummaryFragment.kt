@@ -95,11 +95,13 @@ class SummaryFragment : Fragment() {
                 val status=it.getInt("status")
 
                 if(status==0){
-                    val orderId=it.getInt("order_id")
+                    dao.deleteAll() //delete all items in cart
+                    val orderId=it.getString("order_id")
                    Log.d("summary","order place sucessfully, order id is $orderId")
                     val intent= Intent(binding.root.context, OrderDetailActivity::class.java)
                     intent.putExtra("order_id",orderId)
                     startActivity(intent)
+
 
                 }else{
                     val message=it.getString("message")

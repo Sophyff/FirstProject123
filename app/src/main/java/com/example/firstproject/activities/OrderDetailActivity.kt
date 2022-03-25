@@ -1,5 +1,6 @@
 package com.example.firstproject.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -24,7 +25,7 @@ class OrderDetailActivity : AppCompatActivity() {
     lateinit var binding:ActivityOrderDetailBinding
     lateinit var queue: RequestQueue
     lateinit var adapter: OrderItemAdapter
-    var orderId=0
+    var orderId=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,15 +35,20 @@ class OrderDetailActivity : AppCompatActivity() {
         queue= Volley.newRequestQueue(baseContext)
         binding.rvItems.layoutManager = LinearLayoutManager(baseContext)
 
-        orderId= intent?.extras?.getString("order_id")?.toInt()!!
+        orderId= intent?.extras?.getString("order_id")?:""
 
-        if(orderId!=0){
+        if(orderId!=""){
             loadOrderDetail(orderId)
+        }
+
+        binding.btnContinueShop.setOnClickListener {
+            startActivity(Intent(baseContext,DrawNavActivity::class.java))
+            finish()
         }
 
     }
 
-    private fun loadOrderDetail(orderId:Int){
+    private fun loadOrderDetail(orderId:String){
         val url = "${Constants.BASE_URL}Order?order_id=$orderId"
         Log.d("Tag","get order detail by id $orderId;  url is: $url")
 

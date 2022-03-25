@@ -1,6 +1,7 @@
 package com.example.firstproject.activities.fragments
 
 import android.content.Intent
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -44,14 +45,22 @@ class CartFragment : Fragment() {
 
         dao= CartProductDao(binding.root.context)
         productList=dao.getCartProducts()
-        adapter= CartProductAdapter(productList)
-        binding.rvCartProducts.adapter=adapter
 
-        changeQuantityListener(adapter)
+        if(productList.size==0){
+            binding.tvNoItem.visibility=View.VISIBLE
+        }else{
+            binding.tvNoItem.visibility=View.GONE
 
-        binding.btnCheckOut.setOnClickListener {
-            startActivity(Intent(view.context,CheckoutActivity::class.java))
+            adapter= CartProductAdapter(productList)
+            binding.rvCartProducts.adapter=adapter
+
+            changeQuantityListener(adapter)
+
+            binding.btnCheckOut.setOnClickListener {
+                startActivity(Intent(view.context,CheckoutActivity::class.java))
+            }
         }
+
         return view
     }
 
